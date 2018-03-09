@@ -1,9 +1,9 @@
 import strutils, tables, re
 
-let ops = ['+','-','*','/','(',')']
-let prec = { "*": 1, "/": 3, "+": 2, "-": 2, "(": 1 }.toTable
+let ops = [ '+', '-', '*', '/', '(', ')' ]
+let prec = { "*": 3, "/": 3, "+": 2, "-": 2, "(": 1, ")": 1 }.toTable
 
-proc splitExpr (sInfExpr: string): seq[string] =
+proc splitExpr* (sInfExpr: string): seq[string] =
   result = @[]
   var opInd = 0
   for i in 0..<sInfExpr.len:
@@ -14,7 +14,7 @@ proc splitExpr (sInfExpr: string): seq[string] =
       if opInd == result.len: result.add("")
       result[result.len-1].add(sInfExpr[i])
 
-proc infToPostf (sInfExpr: string): seq[string] =
+proc infToPostf* (sInfExpr: string): seq[string] =
   result = @[]
   var infExpr = splitExpr(sInfExpr)
   var opStack: seq[string] = @[]
@@ -22,7 +22,7 @@ proc infToPostf (sInfExpr: string): seq[string] =
     if match(token, re"^(-?)([0-9]+)(.[0-9]+)?$"):
       result.add(token)
     elif token == "(":
-      opStack.insert(token)
+      opStack.add(token)
     elif token == ")":
       var topToken = opStack.pop()
       while topToken != "(":
@@ -30,7 +30,7 @@ proc infToPostf (sInfExpr: string): seq[string] =
         topToken = opStack.pop()
     else:
       while opStack.len > 0:
-        if prec[opStack[0]] < prec[token]: break
+        if prec[opStack[opStack.len-1]] < prec[token]: break
         result.add(opStack.pop())
       opStack.add(token)
   while opStack.len > 0:
