@@ -1,6 +1,3 @@
-# nimqml-calc
+# nimqml-apps
 
-Simple app with [nimqml](https://github.com/filcuc/nimqml)
-
-![](1.png)
-![](2.png)
+Collection of applications, who built with [nimqml](https://github.com/filcuc/nimqml)
