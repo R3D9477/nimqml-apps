@@ -3,6 +3,7 @@ import QtQuick.Window 2.10
 import QtQuick.Controls 2.3
 
 Window {
+    id: window
     visible: true
     width: 250
     height: 105
@@ -10,11 +11,15 @@ Window {
 
     TextField {
         id: textField
-        x: 10
-        y: 12
-        width: 232
         height: 40
         text: mainWindow.messageText
+        anchors.top: parent.top
+        anchors.topMargin: 12
+        anchors.right: parent.right
+        anchors.rightMargin: 8
+        anchors.left: parent.left
+        anchors.leftMargin: 10
+        onTextEdited: mainWindow.messageText = textField.text
     }
 
     Button {
@@ -24,6 +29,10 @@ Window {
         width: 124
         height: 40
         text: qsTr("Show message")
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 7
+        anchors.right: parent.right
+        anchors.rightMargin: 8
         onClicked: mainWindow.showChildWindow()
     }
 }
