@@ -10,7 +10,6 @@ QtObject:
     if self.messageText == messageText: return
     self.messageText = messageText
     messageTextChanged(self, messageText)
-    echo messageText
   
   proc getMessageText(self: MainWindowHandler): string {.slot.} =
     result = self.messageText

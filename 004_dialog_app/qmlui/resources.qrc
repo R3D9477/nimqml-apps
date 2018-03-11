@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>MainWindow.qml</file>
+        <file>Dialog.qml</file>
+    </qresource>
+</RCC>
