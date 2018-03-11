@@ -1,6 +1,5 @@
 # nimqml-apps: window management application
 
-allow to:
 * show or hide system tray icon
 * change position of window
 * change size of window
