@@ -1,4 +1,4 @@
-import nimqml
+import nimqml, strutils, unicode
 
 QtObject:
   type WindowHandler* = ref object of QObject
@@ -7,22 +7,19 @@ QtObject:
   
   proc delete*(self: WindowHandler) =
     self.QObject.delete
-  
-  proc setup(self: WindowHandler) =
-    self.QObject.setup
-  
+
 proc newWindowHandler*[T](app: QApplication, engine: QQmlApplicationEngine): T =
   new(result)
   result.app = app
   result.engine = engine
-  result.setup()
+  result.QObject.setup
 
-proc loadWindow*[T](wndHandler: T, windowName: string): T {.discardable.} =
+proc loadWindow*[T](wndHandler: T, windowName: string, qmlName: string = nil): T {.discardable.} =
   let qWh = newQVariant(wndHandler)
   defer: qWh.delete
   
   wndHandler.engine.setRootContextProperty(windowName, qWh)
   
-  let qUrl = newQUrl("qrc:///" & windowName & ".qml");
+  let qUrl = newQUrl("qrc:///" & (if isNilOrEmpty(qmlName): (title(windowName) & ".qml") else: qmlName));
   defer: qUrl.delete
   wndHandler.engine.load(qUrl)

@@ -2,6 +2,5 @@
     <qresource prefix="/">
         <file>MainWindow.qml</file>
         <file>ChildWindow.qml</file>
-        <file>ChildWindowForm.ui.qml</file>
     </qresource>
 </RCC>
