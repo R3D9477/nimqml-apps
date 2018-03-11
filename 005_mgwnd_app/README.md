@@ -5,6 +5,5 @@
 * change size of window
 * minimize or maximize window
 * quit from application
-<br/>
 
-![](1.png)
+![](s1.png)
