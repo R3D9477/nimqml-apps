@@ -7,7 +7,7 @@ Window {
     id: window
     visible: true
     width: 300
-    height: 375
+    height: 430
     title: mainWindow.title
     
     SystemTrayIcon {
@@ -46,7 +46,8 @@ Window {
             id: tfW
             width: 50
             height: 40
-            text: qsTr("1000")
+            text: Number(window.width).toLocaleString()
+            validator: IntValidator{}
             anchors.top: parent.top
             anchors.topMargin: -1
             anchors.left: parent.left
@@ -66,7 +67,8 @@ Window {
             id: tfH
             width: 50
             height: 40
-            text: qsTr("1000")
+            text: Number(window.height).toLocaleString()
+            validator: IntValidator{}
             anchors.top: parent.top
             anchors.topMargin: 0
             anchors.left: parent.left
@@ -83,6 +85,10 @@ Window {
             anchors.topMargin: -1
             anchors.right: parent.right
             anchors.rightMargin: 0
+            onClicked: {
+                window.width = Number.fromLocaleString(tfW.text)
+                window.height = Number.fromLocaleString(tfH.text)
+            }
         }
     }
     
@@ -110,7 +116,8 @@ Window {
             id: tfSetPosX
             width: 50
             height: 40
-            text: qsTr("50")
+            text: Number(window.x).toLocaleString()
+            validator: IntValidator{}
             anchors.left: parent.left
             anchors.leftMargin: 43
             anchors.top: parent.top
@@ -130,7 +137,8 @@ Window {
             id: tfSetPosY
             width: 50
             height: 40
-            text: qsTr("50")
+            text: Number(window.y).toLocaleString()
+            validator: IntValidator{}
             anchors.top: parent.top
             anchors.topMargin: -1
             anchors.left: parent.left
@@ -147,6 +155,10 @@ Window {
             anchors.topMargin: -1
             anchors.right: parent.right
             anchors.rightMargin: 0
+            onClicked: {
+                window.x = Number.fromLocaleString(tfSetPosX.text)
+                window.y = Number.fromLocaleString(tfSetPosY.text)
+            }
         }
     }
     
@@ -170,6 +182,7 @@ Window {
             anchors.leftMargin: 0
             anchors.top: parent.top
             anchors.topMargin: -2
+            onClicked: trayIcon.visible = true
         }
         
         Button {
@@ -182,6 +195,7 @@ Window {
             anchors.rightMargin: 0
             anchors.top: parent.top
             anchors.topMargin: 0
+            onClicked: trayIcon.visible = false
         }
     }
     
@@ -205,6 +219,7 @@ Window {
             anchors.leftMargin: 0
             anchors.top: parent.top
             anchors.topMargin: -2
+            onClicked: window.showMinimized()
         }
         
         Button {
@@ -217,6 +232,21 @@ Window {
             anchors.rightMargin: 0
             anchors.top: parent.top
             anchors.topMargin: -4
+            onClicked: window.showMaximized()
         }
+    }
+    
+    Button {
+        id: btnClose
+        x: 166
+        y: 375
+        width: 118
+        height: 40
+        text: qsTr("Close")
+        anchors.right: parent.right
+        anchors.rightMargin: 16
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 15
+        onClicked: Qt.quit()
     }
 }
