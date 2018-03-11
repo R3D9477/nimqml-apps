@@ -16,7 +16,6 @@ QtObject:
   
   QtProperty[string] exprBuff:
     read = getExprBuff
-    write = setExprBuff
     notify = exprBuffChanged
   
   proc btnActNumClicked* (self: MainWindowHandler, value: string) {.slot.} =
