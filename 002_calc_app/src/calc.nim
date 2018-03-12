@@ -19,7 +19,7 @@ proc infToPostf* (sInfExpr: string): seq[string] =
   var infExpr = splitExpr(sInfExpr)
   var opStack: seq[string] = @[]
   for token in infExpr:
-    if match(token, re"^(-?)([0-9]+)(.[0-9]+)?$"):
+    if match(token, re"^([0-9]+)(.[0-9]+)?$"):
       result.add(token)
     elif token == "(":
       opStack.add(token)
