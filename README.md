@@ -1,3 +1,3 @@
 # nimqml-apps
 
-Collection of desktop applications, who built with [nimqml](https://github.com/filcuc/nimqml).
+Collection of desktop applications, which built with [nimqml](https://github.com/filcuc/nimqml).
